@@ -2,7 +2,7 @@
 
 A futuristic, dark-mode learning dashboard built with Next.js App Router, Supabase, Tailwind CSS v4, Framer Motion, and Lucide React. Displays live course data in an asymmetric bento grid with smooth entrance and hover animations.
 
-**Live demo:** [add vercel URL here]
+**Live demo:** [student-dashboard-tanish.vercel.app](https://student-dashboard-tanish.vercel.app)
 
 ---
 
