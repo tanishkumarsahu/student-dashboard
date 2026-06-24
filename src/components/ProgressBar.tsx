@@ -1,30 +1,36 @@
-'use client'
+use client';
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react';
 
 interface ProgressBarProps {
-  value: number
-  className?: string
+  value: number;
+  className?: string;
 }
 
 export default function ProgressBar({ value, className = '' }: ProgressBarProps) {
-  const [width, setWidth] = useState(0)
-  const ref = useRef<HTMLDivElement>(null)
+  const [width, setWidth] = useState(0);
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setTimeout(() => setWidth(value), 120)
-          observer.disconnect()
+          // Directly update width to the new value for immediate rendering
+          setWidth(value);
+          observer.disconnect();
         }
       },
       { threshold: 0.1 }
-    )
+    );
 
-    if (ref.current) observer.observe(ref.current)
-    return () => observer.disconnect()
-  }, [value])
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, [value]);
+
+  // Ensure width is always updated to the current value prop for scaleX
+  useEffect(() => {
+    setWidth(value);
+  }, [value]);
 
   return (
     <div
@@ -39,5 +45,5 @@ export default function ProgressBar({ value, className = '' }: ProgressBarProps)
         }}
       />
     </div>
-  )
+  );
 }
